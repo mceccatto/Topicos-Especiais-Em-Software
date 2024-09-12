@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Criar Tarefa</title>
+</head>
+<body>
+    <h1>Criar Nova Tarefa</h1>
+
+    <form method="POST" action="{{ url_for('criar_tarefa') }}">
+        <label for="titulo">Título:</label>
+        <input type="text" id="titulo" name="titulo" required><br><br>
+
+        <label for="descricao">Descrição:</label>
+        <textarea id="descricao" name="descricao"></textarea><br><br>
+
+        <input type="submit" value="Criar">
+    </form>
+</body>
+</html>

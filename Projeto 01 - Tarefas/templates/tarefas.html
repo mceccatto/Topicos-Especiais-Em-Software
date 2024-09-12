@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Minhas Tarefas</title>
+</head>
+<body>
+    <form method="GET" action="/tarefas">
+        <label for="status">Filtrar por status:</label>
+        <select name="status" id="status">
+            <option value="">Todos</option>
+            <option value="pendente">Pendente</option>
+            <option value="em_progresso">Em Progresso</option>
+            <option value="concluida">Concluída</option>
+        </select>
+        <button type="submit">Filtrar</button>
+    </form>
+    <br/>
+
+    {% if status %}
+    <p>Filtrando por: <strong>{{ status }}</strong></p>
+    {% endif %}
+
+    <h1>Minhas Tarefas</h1>
+
+    <h2>Tarefas Criadas</h2>
+    <ul>
+        {% for tarefa in tarefas_criadas %}
+            <li>
+                <h3>{{ tarefa.titulo }}</h3>
+                <p>{{ tarefa.descricao }}</p>
+                <p>Status: {{ tarefa.status }}</p>
+                <a href="{{ url_for('editar_tarefa', id=tarefa.id) }}">Editar</a> |
+                <a href="{{ url_for('excluir_tarefa', id=tarefa.id) }}">Excluir</a> |
+                <a href="{{ url_for('atribuir_tarefa', id=tarefa.id) }}">Atribuir</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <h2>Tarefas Atribuídas a Mim</h2>
+    <ul>
+        {% for tarefa in tarefas_atribuidas %}
+            <li>
+                <h3>{{ tarefa.titulo }}</h3>
+                <p>{{ tarefa.descricao }}</p>
+                <p>Status: {{ tarefa.status }}</p>
+                <p>Criador: {{ tarefa.usuario.username }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <a href="{{ url_for('criar_tarefa') }}">Criar Nova Tarefa</a>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Atribuir Tarefa</title>
+</head>
+<body>
+    <h1>Atribuir Tarefa: {{ tarefa.titulo }}</h1>
+
+    <form method="POST" action="{{ url_for('atribuir_tarefa', id=tarefa.id) }}">
+        <label for="usuario_atribuido">Atribuir a:</label>
+        <select id="usuario_atribuido" name="usuario_atribuido">
+            {% for usuario in usuarios %}
+                <option value="{{ usuario.id }}">{{ usuario.username }}</option>
+            {% endfor %}
+        </select><br><br>
+
+        <input type="submit" value="Atribuir">
+    </form>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="flash-message {{ category }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+</body>
+</html>

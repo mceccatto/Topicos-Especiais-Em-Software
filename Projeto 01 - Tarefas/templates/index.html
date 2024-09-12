@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Página Inicial</title>
+</head>
+<body>
+    <h1>Bem-vindo ao Gerenciador de Tarefas</h1>
+
+    {% if current_user.is_authenticated %}
+        <p>Olá, {{ current_user.username }}!</p>
+        <a href="{{ url_for('tarefas') }}">Minhas Tarefas</a> |
+        <a href="{{ url_for('logout') }}">Logout</a>
+    {% else %}
+        <a href="{{ url_for('login') }}">Login</a> |
+        <a href="{{ url_for('cadastro') }}">Cadastro</a>
+    {% endif %}
+</body>
+</html>

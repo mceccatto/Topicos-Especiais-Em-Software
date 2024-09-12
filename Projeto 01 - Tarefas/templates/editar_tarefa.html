@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Editar Tarefa</title>
+</head>
+<body>
+    <h1>Editar Tarefa: {{ tarefa.titulo }}</h1>
+
+    <form method="POST" action="{{ url_for('editar_tarefa', id=tarefa.id) }}">
+        <label for="titulo">Título:</label>
+        <input type="text" id="titulo" name="titulo" value="{{ tarefa.titulo }}" required><br><br>
+
+        <label for="descricao">Descrição:</label>
+        <textarea id="descricao" name="descricao">{{ tarefa.descricao }}</textarea><br><br>
+
+        <label for="status">Status:</label>
+        <select id="status" name="status">
+            <option value="pendente" {% if tarefa.status == 'pendente' %}selected{% endif %}>Pendente</option>
+            <option value="em_progresso" {% if tarefa.status == 'em_progresso' %}selected{% endif %}>Em Progresso</option>
+            <option value="concluida" {% if tarefa.status == 'concluida' %}selected{% endif %}>Concluída</option>
+        </select><br><br>
+
+        <input type="submit" value="Salvar">
+    </form>
+</body>
+</html>
